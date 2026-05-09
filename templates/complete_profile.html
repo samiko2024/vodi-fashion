@@ -1,0 +1,44 @@
+{% block content %}
+{% include "header.html" %}
+
+    <section id="profile-complete">
+
+    <div class="form-wrapper">
+        <h2>Complete Your Delivery Information</h2>
+
+        <form method="POST">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                <label>{{ form.phone.label }}</label>
+                {{ form.phone(class="input") }}
+                {% for error in form.phone.errors %}
+                    <p class="error">{{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.address.label }}</label>
+                {{ form.address(class="input") }}
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.state.label }}</label>
+                {{ form.state(class="input") }}
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.country.label }}</label>
+                {{ form.country(class="input") }}
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.note.label }}</label>
+                {{ form.note(class="textarea") }}
+            </div>
+
+            {{ form.submit(class="btn") }}
+        </form>
+    </div>
+    </section>
+{% include "footer.html" %} {% endblock %}

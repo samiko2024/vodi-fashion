@@ -1,0 +1,45 @@
+{% block content %}
+{% include "header.html" %}
+ <section id="page-header" class="blog-header">
+        <h2>#Explore our Blog Gallery</h2>
+        <p>Read information on fashion event, social event, government and
+            @vodi luxury fashion design services news</p>
+    </section>
+
+    <section id="blog">
+        {% for i in post: %}
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="{{ i.blog_photo }}" alt="">
+            </div>
+            <div class="blog-details">
+                <h4>{{ i.Title }}</h4>
+                <p>{{ i.body }}</p>
+                <a href="#">COUNTINUE READING</a>
+            </div>
+            <h1>13/01</h1>
+             {% if current_user.id == 1 %}
+                <a href="/delete-blog/{{ i.id }}">Delete</a>
+             {% endif %}
+        </div>
+        {% endfor %}
+    </section>
+
+    <section id="pagination" class="section-p1">
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#"><i class="ri-arrow-right-fill"></i></a>
+    </section>
+
+    <section id="news-letter" class="section-p1 section-m1">
+        <div class="news-text">
+            <h4>Sign Up For Newsletter</h4>
+            <p>Get E-mail update about our latest shop and <span>special offers</span></p>
+        </div>
+        <div class="form">
+            <input type="text" placeholder="your email address">
+            <button class="normal">Sign Up</button>
+        </div>
+    </section>
+
+{% include "footer.html"%} {% endblock %}

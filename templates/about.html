@@ -1,0 +1,93 @@
+{% block content %}
+{% include "header.html" %}
+
+    <section id="page-header" class="about-header">
+        <h2>#Know Us</h2>
+        <p> Vodi Luxury Fashion Design Services</p>
+    </section>
+
+    <section id="about-head" class="section-p1">
+        <img src="static/assets/images/vodi-m2.png">
+        <div>
+            <h2>Who We Are</h2>
+            <p>Vodi group is renowned Nigerian fashion conglomerate founded by Seyi vodi
+            in 2001 initially started as a small tailoring business called testimony fabrics,
+            It was later rebranded to Vodi Group in 2003. The company has grown in to a
+            multifaceted fashion empire with several subsidiaries, including Vodi Tailor,
+             Vodi Clean, Vodi Training institute, vodi Debo and Vodi Textile</p>
+            <abbr title=""> Create a stunning image with as much or a little control as you
+             like thanks to a choice of basic mode and creative modes. </abbr>
+
+            <br><br>
+
+            <marquee bgcolor="#ccc" loop="-1" scrollamount="5" width="100%">
+                Welcome To Vodi Fashion and Luxury, Enjoy Luxuries with us .</marquee>
+        </div>
+    </section>
+    <section id="about-ceo" class="section-p1">
+        <img src="static/assets/images/seyi-vodi.jpg">
+        <div>
+            <h2>Seyi Vodi, CEO Vodi Group</h2>
+            <p>Seyi Vodi, whose real name is Seyi Adekunle, is a prominent Nigerian fashion
+                entrepreneur, founder of the Vodi Group, and a celebrated tailor known for
+                designing high-end customized menswear including suits, agbadas, and kaftans.
+                His brand is recognized for blending traditional African design with modern
+                styles and has a clientele of politicians, celebrities, and dignitaries
+                worldwide. </p>
+        </div>
+    </section>
+
+    <section id="about-vodi" class="section-p1">
+        <h1>Our Work Space</h1>
+        <div class="video">
+            <video autoplay muted loop src="static/video/video-view.mp4"></video>
+        </div>
+    </section>
+
+    <section id="contact-details" class="section-p1">
+        <div class="details">
+            <span>GET IN TOUCH</span>
+            <h2>visit our Location or contact us today</h2>
+            <h3> Head Office</h3>
+            <div>
+                <ul>
+                   <li>
+                       <i class="ri-building-fill"></i>
+                       <p>Plot 162 Muhammed Buhari Way Abuja Fct Nigeria</p>
+                   </li>
+                   <li>
+                       <i class="ri-mail-fill"></i>
+                       <p>rockwaynigeria@gmail.com</p>
+                   </li>
+                   <li>
+                       <i class="ri-phone-fill"></i>
+                       <p>(+234) 7045809030 / (+234) 8036189340</p>
+                   </li>
+                   <li>
+                       <i class="ri-timer-line"></i>
+                       <p>08:00am - 06:00pm Mon - Sat</p>
+                   </li>
+                </ul>
+            </div>
+        </div>
+        <div class="map">
+               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31518.
+               30241241625!2d7.4481568359289785!3d9.083086322845272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.
+               1!3m3!1m2!1s0x104e0ac6ab765177%3A0x9f237f51245ee0cc!2sMabushi%2C%20Abuja%20900108%2C%20
+               Federal%20Capital%20Territory!5e0!3m2!1sen!2sng!4v1759146895298!5m2!1sen!2sng
+               " width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <section id="news-letter" class="section-p1 section-m1">
+        <div class="news-text">
+            <h4>Sign Up For Newsletter</h4>
+            <p>Get E-mail update about our latest shop and <span>special offers</span></p>
+        </div>
+        <div class="form">
+            <input type="text" placeholder="your email address">
+            <button class="normal">Sign Up</button>
+        </div>
+    </section>
+
+    {% include "footer.html"%} {% endblock %}

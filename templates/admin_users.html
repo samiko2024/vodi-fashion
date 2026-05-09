@@ -1,0 +1,73 @@
+{% block content %}
+{% include "header.html" %}
+
+<section id="users-page">
+
+    <!-- Page Header -->
+    <div class="users-header">
+        <div>
+            <h2>Users</h2>
+            <p>Manage registered users</p>
+        </div>
+        <span class="users-count">{{ total_users }} users</span>
+    </div>
+
+    <!-- Users Table -->
+    <div class="users-table-wrapper">
+        <table class="users-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Contact</th>
+                    <th>Location</th>
+                    <th>Joined</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+
+                    <td class="user-info">
+                        <div class="avatar">
+                            {{ user.username[0]|upper }}
+                        </div>
+                        <div>
+                            <strong>{{ user.username }}</strong>
+                            <small>{{ user.email }}</small>
+                        </div>
+                    </td>
+
+                    <td>
+                        <span>{{ user.phone or "—" }}</span>
+                    </td>
+
+                    <td>
+                        <span>
+                            {{ user.state or "" }}
+                            {% if user.state and user.country %}, {% endif %}
+                            {{ user.country or "—" }}
+                        </span>
+                    </td>
+
+                    <td>
+                        {{ user.date_joined.strftime('%d %b %Y') }}
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" class="empty">
+                        No users found
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</section>
+
+
+
+{% include "footer.html"%}{% endblock %}

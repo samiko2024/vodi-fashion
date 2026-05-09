@@ -1,0 +1,135 @@
+{% block content %}
+{% include "header.html" %}
+
+<section id="single-video-section" style="max-width: 900px; margin: 0 auto; padding: 20px;">
+
+    <!-- VIDEO TITLE -->
+    <h2>{{ video.title }}</h2>
+
+    <!-- MAIN VIDEO -->
+    <video
+        src="{{ url_for('static', filename='upload-videos/' + video.filename) }}"
+        controls
+        autoplay
+        style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
+    </video>
+
+    <!-- ACTION BUTTONS -->
+    <div style="display:flex; gap:20px; align-items:center; margin-bottom: 25px;">
+
+        <!-- LIKE BUTTON -->
+            <form method="POST" action="{{ url_for('like_video', video_id=video.id) }}">
+                {% if user_has_liked %}
+                    <button type="submit" class="like-btn"
+                        style="padding: 10px 18px; border:none; background:#555; color:#fff; border-radius:6px; cursor:pointer;">
+                        💔 Unlike ({{ video.likes }})
+                    </button>
+                {% else %}
+                    <button type="submit" class="like-btn"
+                        style="padding: 10px 18px; border:none; background:#ff4757; color:#fff; border-radius:6px; cursor:pointer;">
+                        ❤️ Like ({{ video.likes }})
+                    </button>
+                {% endif %}
+            </form>
+
+        <!-- COMMENTS COUNT -->
+        <span style="font-size:16px;">
+            💬 {{ video.comments|length }} Comments
+        </span>
+
+        <!-- WHATSAPP CONTACT -->
+        <a href="{{ whatsapp_link(video) }}" target="_blank"
+           style="padding: 10px 18px; background:#25D366; color:#fff; border-radius:6px; text-decoration:none;">
+            Message on WhatsApp
+            <i class="ri-whatsapp-line"></i>
+        </a>
+    </div>
+
+    <hr>
+
+    <!-- COMMENTS SECTION -->
+    <h3>Comments</h3>
+
+    <div style="margin-top: 10px;">
+        {% for comment in video.comments %}
+            <div style="padding:10px; border-bottom:1px solid #ddd;">
+                <strong>{{ comment.user_name }}</strong><br>
+                {{ comment.text }}
+            </div>
+        {% else %}
+            <p>No comments yet. Be the first to comment!</p>
+        {% endfor %}
+    </div>
+
+    <!-- ADD COMMENT FORM -->
+    <form action="{{ url_for('add_comment', video_id=video.id) }}" method="POST"
+          style="margin-top: 20px;">
+        <textarea name="comment_text" rows="3" placeholder="Write a comment..."
+            required style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc;"></textarea>
+        <button type="submit"
+            style="margin-top:10px; padding:10px 20px; background:#1e90ff; border:none; color:white; border-radius:6px;">
+            Comment
+        </button>
+    </form>
+
+</section>
+
+
+
+<section id="news-letter" class="section-p1 section-m1">
+    <div class="news-text">
+            <h4>Sign Up For Newsletter</h4>
+            <p>Get E-mail update about our latest shop and <span>special offers</span></p>
+        </div>
+    <div class="form">
+            <input type="text" placeholder="your email address">
+            <button class="normal">Sign Up</button>
+        </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const likeBtn = document.querySelector("#like-btn");
+  if (likeBtn) {
+    likeBtn.addEventListener("click", () => {
+      const videoId = likeBtn.dataset.videoId;
+      fetch(`/like_video/${videoId}`, {
+        method: "POST",
+        headers: {
+          "X-Requested-With": "XMLHttpRequest"
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("like-count").textContent = data.likes;
+      })
+      .catch(error => console.error("Error:", error));
+    });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  const likeButtons = document.querySelectorAll(".like-button");
+
+  likeButtons.forEach(button => {
+    button.addEventListener("click", function() {
+      const likeCountSpan = this.querySelector("#like-count");
+      let likeCount = parseInt(likeCountSpan.textContent);
+
+      // Toggle like state
+      this.classList.toggle("active");
+
+      if (this.classList.contains("active")) {
+        likeCount++;
+      } else {
+        likeCount--;
+      }
+
+      // Animate count change
+      likeCountSpan.textContent = likeCount;
+    });
+  });
+});
+</script>
+
+    {% include "footer.html"%}{% endblock %}

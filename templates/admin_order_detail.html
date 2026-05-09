@@ -1,0 +1,61 @@
+{% block content %}
+{% include "header.html" %}
+
+<section id="order-body">
+    <div class="container py-4">
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+
+                <h3 class="fw-bold">Manage Order #{{ order.id }}</h3>
+                <p class="user-address">Address: {{ order.user.address }} {{ order.user.state }}
+                {{ order.user.country }}</p>
+                <p>Tele: {{ order.user.phone }}</p>
+                <p class="text-muted">Placed: {{ order.date_created.strftime('%Y-%m-%d %H:%M') }}</p>
+
+                <div class="mb-3">
+                    <span class="badge bg-primary p-2">{{ order.payment_status|capitalize }}</span>
+                    <span class="badge bg-warning p-2">{{ order.order_status|capitalize }}</span>
+                </div>
+
+                <hr>
+
+                <h5 class="fw-bold mb-3">Order Items</h5>
+
+                {% for item in order.items %}
+                <div class="d-flex align-items-center border-bottom py-3">
+                    <img src="{{ item.image }}" width="80" height="80" class="rounded me-3">
+
+                    <div>
+                        <h6 class="fw-bold mb-1">{{ item.title }}</h6>
+                        <p class="mb-0 text-muted">₦{{ item.price }} × {{ item.quantity }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="mt-3 text-end">
+                    <h4 class="fw-bold">Total: ₦{{ order.total_amount }}</h4>
+                </div>
+
+                <hr>
+
+                <h4 class="fw-bold mb-3">Update Order Status</h4>
+
+                <form action="{{ url_for('admin_ship_order', order_id=order.id) }}" method="POST" class="mb-2">
+                    <button class="btn btn-warning w-100">Mark as Shipped</button>
+                </form>
+
+                <form action="{{ url_for('admin_deliver_order', order_id=order.id) }}" method="POST" class="mb-2">
+                    <button class="btn btn-success w-100">Mark as Delivered</button>
+                </form>
+
+                <form action="{{ url_for('admin_cancel_order', order_id=order.id) }}" method="POST">
+                    <button class="btn btn-danger w-100">Cancel Order</button>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+{% include "footer.html"%}{% endblock %}

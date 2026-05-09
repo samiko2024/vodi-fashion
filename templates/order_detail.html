@@ -1,0 +1,39 @@
+{% block content %}
+{% include "header.html" %}
+
+
+<section id="order-body">
+    <div class="container">
+
+        <div class="card">
+
+            <h2 style="font-weight:700;">Order #{{ order.id }}</h2>
+            <p style="color:#666;">Placed on {{ order.date_created.strftime('%Y-%m-%d %H:%M') }}</p>
+
+            <div style="margin: 30px 0;">
+                <span class="badge bg-primary">{{ order.payment_status|capitalize }}</span>
+                <span class="badge bg-warning">{{ order.order_status|capitalize }}</span>
+            </div>
+
+            <h3 style="margin-top:20px;">Items</h3>
+
+            {% for item in order.items %}
+            <div class="order-item">
+                <img src="{{ item.image }}">
+                <div>
+                    <h4 style="margin:0;">{{ item.title }}</h4>
+                    <p style="color:#666; margin:5px 0;">
+                        ₦{{ item.price }} × {{ item.quantity }}
+                        {% if item.size %} | Size: {{ item.size }}{% endif %}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+
+            <h2 style="text-align:right; margin-top:20px;">Total: ₦{{ order.total_amount }}</h2>
+        </div>
+    </div>
+
+</section>
+
+{% include "footer.html"%}{% endblock %}

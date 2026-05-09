@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To|Vodi Group</title>
+   <link
+      href="{{ url_for('static', filename='css/style.css') }}"
+      rel="stylesheet"
+    />
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+    />
+    <link rel="stylesheet" href=""
+    />
+<body>
+
+<main>
+
+    <section class="login-banner">
+        <marquee  loop="-1" scrollamount="5" width="100%" ><h2>
+                Welcome To Vodi Fashion and Luxury, Enjoy Luxuries with us.</h2></marquee>
+      <div class="base-content">
+        <div class="form">
+          <h3>Login Account</h3>
+          <hr class="first">
+
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+                <p class="flash">{{ message }}</p>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+
+          <form method="post">
+            {{ form.hidden_tag() }}
+            <div id="email">
+              <h4>Email</h4>
+              {{ form.email }}
+            </div>
+            <div id="password">
+              <h4>Password</h4>
+              {{ form.password }}
+            </div>
+            {{ form.submit }}
+          </form>
+        </div>
+
+        <div class="forget-pass">
+            <a href="{{ url_for('forgot_password') }}">Forget Password?</a>
+        </div>
+
+      </div>
+
+      <div class="new-account">
+        <a href="{{ url_for('sign_up') }}">
+          <h3>Create Account</h3>
+        </a>
+      </div>
+    </section>
+
+</main>
+</body>
+</html>

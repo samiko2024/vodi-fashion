@@ -1,0 +1,70 @@
+{% block content %}
+{% include "header.html" %}
+
+
+
+<section id="order-body">
+       <div class="container">
+
+    <h2 class="fw-700" style="margin-bottom:25px;">Admin Orders</h2>
+
+    <div class="invoice-card">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Payment</th>
+                    <th>Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>#{{ order.id }}</td>
+
+                    <td>
+                        {{ order.user.username if order.user else "Guest" }}
+                    </td>
+
+                    <td>₦{{ "{:,.0f}".format(order.total_amount) }}</td>
+
+                    <td>
+                        <span class="badge bg-info">
+                            {{ order.order_status|capitalize }}
+                        </span>
+                    </td>
+
+                    <td>
+                        {% if order.payment_status == "paid" %}
+                            <span class="badge bg-success">Paid</span>
+                        {% else %}
+                            <span class="badge bg-warning">Pending</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {{ order.date_created.strftime('%d %b %Y') }}
+                    </td>
+
+                    <td>
+                        <a href="{{ url_for('admin_order_detail', order_id=order.id) }}"
+                           class="btn btn-dark">
+                            Manage
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+</section>
+{% include "footer.html"%}{% endblock %}

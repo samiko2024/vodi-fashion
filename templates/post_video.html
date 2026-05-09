@@ -1,0 +1,116 @@
+{% block content %}
+{% include "header.html" %}
+
+<section id="video_section">
+    <div class="video-gallery">
+      {% for video in videos %}
+       <div class="video-card">
+          <a href="{{ url_for('view_video', video_id=video.id) }}">
+           <video src="{{ url_for('static', filename='upload-videos/' + video.filename) }}" controls></video>
+           </a>
+              <p>{{ video.title }}</p>
+
+
+          <!-- Hidden actions (show on hover) -->
+          <div class="video-actions">
+            <button id="like-btn" data-video-id="{{ video.id }}" class="like-button">
+              ❤️ Like (<span id="like-count">{{ video.likes }}</span>)
+            </button>
+
+            <div class="action-icon">
+              <i class="ri-chat-4-line"></i>
+              <div class="likes">{{ video.comments|length }} Comments</div>
+            </div>
+
+            <!-- Contact button -->
+            <a href="{{ whatsapp_link(video) }}" target="_blank" class="contact-btn">
+              <i class="ri-whatsapp-line"></i>
+              <span class="contact-text">Message on WhatsApp</span>
+            </a>
+          </div>
+
+          <!-- Comments -->
+          <div class="comment-section">
+            {% for comment in video.comments %}
+              <div class="comment">
+                <strong>{{ comment.user_name }}</strong><br>
+                {{ comment.text }}
+              </div>
+            {% else %}
+              <p>No comments yet. Be the first to comment!</p>
+            {% endfor %}
+            <form action="{{ url_for('add_comment', video_id=video.id) }}" method="POST" class="comment-form">
+              <textarea name="comment_text" rows="3" placeholder="Write a comment..." required></textarea>
+              <button type="submit">Comment</button>
+            </form>
+          </div>
+        </div>
+             {% if current_user.id == 1 %}
+            <a href="{{ url_for('delete_video', video_id=video.id) }}">Delete</a>
+            {% endif %}
+      {% else %}
+        <p>No videos yet. <a href="{{ url_for('upload_video') }}">Upload one</a></p>
+      {% endfor %}
+    </div>
+
+</section>
+
+
+
+<section id="news-letter" class="section-p1 section-m1">
+    <div class="news-text">
+            <h4>Sign Up For Newsletter</h4>
+            <p>Get E-mail update about our latest shop and <span>special offers</span></p>
+        </div>
+    <div class="form">
+            <input type="text" placeholder="your email address">
+            <button class="normal">Sign Up</button>
+        </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const likeBtn = document.querySelector("#like-btn");
+  if (likeBtn) {
+    likeBtn.addEventListener("click", () => {
+      const videoId = likeBtn.dataset.videoId;
+      fetch(`/like_video/${videoId}`, {
+        method: "POST",
+        headers: {
+          "X-Requested-With": "XMLHttpRequest"
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("like-count").textContent = data.likes;
+      })
+      .catch(error => console.error("Error:", error));
+    });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  const likeButtons = document.querySelectorAll(".like-button");
+
+  likeButtons.forEach(button => {
+    button.addEventListener("click", function() {
+      const likeCountSpan = this.querySelector("#like-count");
+      let likeCount = parseInt(likeCountSpan.textContent);
+
+      // Toggle like state
+      this.classList.toggle("active");
+
+      if (this.classList.contains("active")) {
+        likeCount++;
+      } else {
+        likeCount--;
+      }
+
+      // Animate count change
+      likeCountSpan.textContent = likeCount;
+    });
+  });
+});
+</script>
+
+    {% include "footer.html"%}{% endblock %}

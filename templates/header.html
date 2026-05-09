@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vodi Fashion|Premium Luxuries</title>
+   {% block style %}
+    <link
+      href="{{ url_for('static', filename='css/style.css') }}"
+      rel="stylesheet"
+    />
+   <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet"/>
+    <!---- <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> --->
+
+    {% endblock %}
+<body>
+    <section class="header">
+
+        <div class="navbar">
+            <img id="logo" src="{{ url_for('static', filename='assets/images/vodi2.jpg') }}">
+
+   <ul id="menu">
+        <!-- MAIN MOBILE LINKS -->
+        <li class="mobile-main"><i class="ri-home-4-line"></i><a href="{{ url_for('home') }}">Home</a></li>
+        {% if current_user.id == 1 %}
+        <li class="mobile-main"><i class="ri-dashboard-line"></i><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        {% endif %}
+        <li class="mobile-main"><i class="ri-store-line"></i><a href="{{ url_for('post_product') }}">Shop</a></li>
+        <li class="mobile-main"><i class="ri-news-fill"></i><a href="{{ url_for('blog_page') }}">Blog</a></li>
+        <li class="mobile-main"><i class="ri-video-line"></i><a href="{{ url_for('show_video') }}">Video</a></li>
+
+        <!-- HIDDEN ON MOBILE -->
+        <li class="mobile-hidden"><i class="ri-building-fill"></i><a href="{{ url_for('about_us') }}">About Us</a></li>
+        <li class="mobile-hidden"><i class="ri-account-circle-2-line"></i><a href="{{ url_for('profile', user_id=current_user.id)}}">Account</a></li>
+        <li class="mobile-hidden"><a href="{{ url_for('logout') }}">Logout</a></li>
+
+        <li><a href="#"><i class="ri-close-line" id="close-menu"></i></a></li>
+    </ul>
+
+
+            <div id="mobile">
+                <i id="bar" class="ri-menu-line"></i>
+            </div>
+        </div>
+        <div class="navbar-p">
+            <div class="dropdown">
+                <select name="">
+                   <option value="1">Categories</option>
+                    <option value="2">design</option>
+                    <option value="3">Imported</option>
+                    <option value="4">Local</option>
+                </select>
+            </div>
+
+               <div class="search">
+                    <form role="search" action="/search" method="POST">
+                        <input type="search" name="query" placeholder="Search products...">
+                        <button type="submit">
+                            <i class="ri-search-line"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div id="cart-icon">
+                    <i class="ri-shopping-cart-fill"></i>
+                        <span class="cart-item-count"></span>
+                </div>
+        </div>
+    </section>
+
+    <section>
+       <div class="cart">
+            <h2 class="cart-title">your cart</h2>
+            <div class="cart-content">
+
+            </div>
+            <div class="total">
+                <div class="total-title">Total</div>
+                <div class="total-price">₦0</div>
+            </div>
+            <button class="btn-buy">Placed Order</button>
+            <a href="#"><i class="ri-close-line" id="cart-close"></i></a>
+           </div>
+      </section>
+      <section>
+          <!-- MOBILE BOTTOM NAV -->
+        <div class="mobile-bottom-nav">
+            <a href="{{ url_for('home') }}">
+                <i class="ri-home-4-line"></i>
+                <span>Home</span>
+            </a>
+            <a href="{{ url_for('post_product') }}">
+                <i class="ri-store-line"></i>
+                <span>Shop</span>
+            </a>
+            <a href="{{ url_for('blog_page') }}">
+                <i class="ri-news-fill"></i>
+                <span>Blog</span>
+            </a>
+            <a href="{{ url_for('show_video') }}">
+                <i class="ri-video-line"></i>
+                <span>Video</span>
+            </a>
+            <a href="javascript:void(0)" id="openMenu">
+                <i class="ri-menu-4-line"></i>
+                <span>Menu</span>
+            </a>
+        </div>
+
+  </section>
+
+<script>
+window.addEventListener("scroll", () => {
+    const header = document.querySelector(".header");
+
+    if (window.scrollY > 80) {
+        header.classList.add("shrink");
+    } else {
+        header.classList.remove("shrink");
+    }
+});
+
+const moreToggle = document.querySelector(".more-toggle");
+const moreMenu = document.querySelector(".more-menu");
+
+moreToggle.addEventListener("click", () => {
+    moreMenu.classList.toggle("show");
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const currentPath = window.location.pathname;
+
+    const allNavLinks = document.querySelectorAll(
+        ".navbar a, .mobile-bottom-nav a"
+    );
+
+    allNavLinks.forEach(link => {
+        const linkPath = new URL(link.href).pathname;
+
+        if (linkPath === currentPath) {
+            link.classList.add("active");
+        }
+    });
+});
+
+document.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+        document.getElementById("menu")?.classList.remove("active");
+    }
+});
+
+</script>
+
+</body>
+</html>

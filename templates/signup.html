@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vodi Fashion & luxury</title>
+   <link
+      href="{{ url_for('static', filename='css/style.css') }}"
+      rel="stylesheet"
+    />
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+    />
+    <link rel="stylesheet" href=""
+    />
+<body>
+
+<main>
+    <section class="signup-banner">
+        <div class="base-content">
+            <div class="form">
+                <h3>
+                    Create an Account <br>
+                </h3>
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                  {% for message in messages %}
+                  <p class="flash">{{ message }}</p>
+                  {% endfor %}
+                  {% endif %}
+                  {% endwith %}
+                   <form method="post">
+                       {{ form.hidden_tag() }}
+                    <div class="form.content">
+                      <div id="email"><h4> Email </h4>{{form.email}}</div>
+                        <div id="username"><h4>Username</h4>{{form.username}}</div>
+                       <div id="password1"><h4>Password</h4>{{form.password1}}</div>
+                      <div id="password2"> <h4> Confirm Password</h4>{{ form.password2}}</div>
+                       {{form.submit}}
+                    </div>
+                   </form>
+            </div>
+        </div>
+    </section>
+
+
+</main>
+</body>
+</html>

@@ -1,0 +1,61 @@
+{% block content %}
+{% include "header.html" %}
+    <section id="page-header">
+        <h2># Let Start Shopping</h2>
+        <p> co-operate wears, causal & cultural wears @vodi luxury fashion design services</p>
+    </section>
+
+    <section id="product1" class="section-p1">
+        <div class="product-content">
+
+            {% if data|length == 0 %}
+                <h2 style="text-align:center; padding:40px 0;">
+                    No products found 🔍
+                </h2>
+            {% else %}
+                {% for i in data %}
+                    <div class="product-box" data-type="{{ i.product_type }}">
+                            <div class="img-box">
+                                <img src="{{ i.product_img }}" alt="">
+                            </div>
+                        <div class="des">
+                            <span>{{ i.company }}</span>
+                            <h2 class="product-title">{{ i.product_name }}</h2>
+                            <p>{{ i.product_desc}}</p>
+                        </div>
+                        <div class="price-and-cart">
+                            <span class="price">₦{{ i.product_price }}</span>
+                            <i class="ri-shopping-cart-fill add-cart"></i>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+        </div>
+    </section>
+
+    {% if pagination %}
+    <section id="pagination" class="section-p1">
+        {% if pagination.has_prev %}
+        <a href="{{ url_for('post_product', page=pagination.prev_num) }}"><i class="ri-arrow-left-fill"></i></a>
+        {% endif %}
+
+        {% if pagination.has_next %}
+        <a href="{{ url_for('post_product', page=pagination.next_num) }}"><i class="ri-arrow-right-fill"></i></a>
+        {% endif %}
+    </section>
+    {% endif %}
+
+
+    <section id="news-letter" class="section-p1 section-m1">
+        <div class="news-text">
+            <h4>Sign Up For Newsletter</h4>
+            <p>Get E-mail update about our latest shop and <span>special offers</span></p>
+        </div>
+        <div class="form">
+            <input type="text" placeholder="your email address">
+            <button class="normal">Sign Up</button>
+        </div>
+    </section>
+
+    {% include "footer.html"%}{% endblock %}

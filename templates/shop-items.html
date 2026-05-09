@@ -1,0 +1,49 @@
+{% block content %}
+{% include "header.html" %}
+
+<section id="shop-items">
+   {% if items | length < 1 %}
+   <h3 style="color:white;">No Shop Items</h3>
+   {% else %}
+   <table class="table-dark">
+     <thead>
+       <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Date Added</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Price </th>
+                <th scope="col">Product Type</th>
+                <th scope="col">Company</th>
+                <th scope="col">Product Detail</th>
+                <th scope="col">Picture</th>
+                <th scope="col">Flash Sales</th>
+                <th scope="col">Action</th>
+       </tr>
+     </thead>
+         <tbody>
+             {% for item in items: %}
+             <tr>
+                  <th scope="row">{{ item.id }}</th>
+                  <td>{{ item.date_added }}</td>
+                  <td>{{ item.product_name }}</td>
+                  <td>{{ item.product_price }}</td>
+                  <td>{{ item.product_type }}</td>
+                  <td>{{ item.company }}</td>
+                  <td>{{ item.product_desc }}</td>
+                  <td><img src="{{ item.product_img }}" style="height: 50px; width: 50px; border-radius: 2px;"></td>
+                  <td>{{ item.flash_sale }}</td>
+                    {% if current_user.id == 1: %}
+                  <td>
+                    <a href="/update-items/{{ item.id }}">Update</a>
+                    <a href="/delete/{{ item.id }}">Delete</a>
+                  </td>
+                    {% endif %}
+             </tr>
+             {% endfor %}
+         </tbody>
+   </table>
+    {% endif %}
+
+</section>
+
+ {% include "footer.html"%}{% endblock %}

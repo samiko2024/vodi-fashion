@@ -1,0 +1,164 @@
+{% block content %}
+{% include "header.html" %}
+
+<section class="admin-dashboard">
+    <div class="admin-wrapper">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h1 class="logo">VODI GROUP</h1>
+
+            <nav>
+                <a href="#" class="active">
+                    <i class="ri-dashboard-line"></i>
+                    Dashboard
+                </a>
+                <a href="{{ url_for('admin_orders') }}">
+                    <i class="ri-shopping-bag-line"></i>
+                    Orders
+                </a>
+                <a href="{{ url_for('admin_users') }}">
+                    <i class="ri-user-line"></i>
+                    Users
+                </a>
+
+                <a href="{{ url_for('shop_items') }}">
+                    <i class="ri-store-line"></i>
+                    Shop
+                </a>
+                <a href="{{ url_for('upload_video') }}">
+                    <i class="ri-video-line"></i>
+                    Videos
+                </a>
+                <a href="{{ url_for('add_blog') }}">
+                    <i class="ri-camera-line"></i>
+                    Blog
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Top Bar -->
+            <header class="topbar">
+                <h2>Admin Dashboard</h2>
+
+                <div class="notification">
+                    <i class="ri-notification-3-line"></i>
+                    {% if new_orders > 0 %}
+                        <span class="badge-notify">{{ new_orders }}</span>
+                    {% endif %}
+                </div>
+
+            </header>
+
+
+        <!-- Top Quick Actions -->
+        <div class="quick-actions">
+
+            <a href="{{ url_for('admin_users') }}" class="quick-card">
+                <i class="ri-user-community-fill"></i>
+                <span>Users</span>
+            </a>
+
+            <a href="{{ url_for('admin_analytics') }}" class="quick-card highlight">
+                <i class="ri-bar-chart-2-fill"></i>
+                <span>Analytics</span>
+            </a>
+
+            <a href="{{ url_for('admin_orders') }}" class="quick-card">
+                <i class="ri-shopping-bag-4-fill"></i>
+                <span>New Orders</span>
+            </a>
+
+        </div>
+
+        <!-- Main Cards -->
+        <div class="dashboard-cards">
+
+            <div class="dash-card">
+                <i class="ri-product-hunt-line"></i>
+                <h3>Product Upload</h3>
+                <small>Product control system</small>
+                <p>
+                    Ensure all product images are consistent in size and
+                    information is entered correctly for best display.
+                </p>
+                <a href="{{ url_for('add_shop_items') }}" class="btn-primary">
+                    Upload Product
+                </a>
+            </div>
+
+            <div class="dash-card">
+                <i class="ri-camera-line"></i>
+                <h3>Blog</h3>
+                <small>Event Blogs</small>
+                <p>
+                    Upload fashion events, campaigns, and social activities.
+                </p>
+                <a href="{{ url_for('add_blog') }}" class="btn-primary">
+                    Upload Blog
+                </a>
+            </div>
+
+            <div class="dash-card">
+                <i class="ri-video-on-line"></i>
+                <h3>Video</h3>
+                <small>New Design Videos</small>
+                <p>
+                    Upload short videos showcasing new design concepts.
+                </p>
+                <a href="{{ url_for('upload_video') }}" class="btn-primary">
+                    Upload Video
+                </a>
+            </div>
+
+            <div class="dash-card">
+                <i class="ri-store-2-line"></i>
+                <h3>Shop Items</h3>
+                <small>Update Shop</small>
+                <p>
+                    View, edit, or manage available products in your shop.
+                </p>
+                <a href="{{ url_for('shop_items') }}" class="btn-outline">
+                    Check Shop
+                </a>
+            </div>
+        </div>
+        </main>
+    </div>
+
+</section>
+
+<section class="stats-cards">
+
+    <div class="stat-card">
+        <i class="ri-shopping-cart-2-line"></i>
+        <div>
+            <h3>{{ total_orders }}</h3>
+            <p>Total Orders</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <i class="ri-user-3-line"></i>
+        <div>
+            <h3>{{ total_users }}</h3>
+            <p>Total Users</p>
+        </div>
+    </div>
+
+    <div class="stat-card highlight">
+        <i class="ri-money-dollar-circle-line"></i>
+        <div>
+            <h3>₦{{ "{:,.0f}".format(total_revenue) }}</h3>
+            <p>Total Revenue</p>
+        </div>
+    </div>
+
+</section>
+
+
+    {% include "footer.html" %} {% endblock %}
+

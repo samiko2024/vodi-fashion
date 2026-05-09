@@ -1,0 +1,57 @@
+<footer class="section-p1">
+        <div class="footer">
+            <div class="col">
+               <img class="logo-f" src="{{ url_for('static', filename='assets/images/vodi2.jpg') }}" width="60px">
+                <h4>Contact</h4>
+                <p><strong>Address:</strong> Plot 162 Muhammed Buhari Way Abuja Fct Nigeria</p>
+                <p><strong>Phone:</strong>(+234) 7045809030 / (+234) 8036189340</p>
+                <p><strong>Hour:</strong> 08:00am - 06:00pm Mon - Sat</p>
+                <div class="follow">
+                    <h4>follow Us</h4>
+                    <div class="icon">
+                        <a href="#"><i class="ri-facebook-circle-line"></i></a>
+                        <a href="#"><i class="ri-whatsapp-line"></i></a>
+                        <a href="#"><i class="ri-instagram-line"></i></a>
+                        <a href="#"><i class="ri-pinterest-line"></i></a>
+                        <a href="#"><i class="ri-twitter-x-line"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <h4>About Us</h4>
+                <a href="{{url_for('about_us')}}">About Us</a>
+                <a href="#">Delivery Information</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Condition</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="col">
+                <h4>My Account</h4>
+                <a href="{{url_for('login')}}">Sign In</a>
+                <a href="{{url_for('cart')}}">View Cart</a>
+                <a href="#">My Wishlist</a>
+                <a href="{{url_for('my_orders')}}">Track My Order</a>
+                <a href="#">Help</a>
+            </div>
+            <div class="install">
+                <h4>Install App</h4>
+                <p>From App store or Google Play</p>
+                <div class="row">
+                    <img src="{{ url_for('static', filename='assets/images/app-store2.jpg') }}" width="150px" height="80px">
+                    <p>Secure Payment</p>
+                    <img src="{{ url_for('static', filename='assets/images/visa.jpg') }}" width="150px">
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025, mega rock tech</p>
+        </div>
+    </footer>
+
+
+   <script src="{{ url_for('static', filename='js-script/script.js') }}"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    </main>
+</body>
+</html>

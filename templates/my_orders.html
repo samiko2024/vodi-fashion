@@ -1,0 +1,65 @@
+{% block content %}
+{% include "header.html" %}
+
+
+
+<section id="order-body">
+
+    <div class="container">
+
+        <h2 style="font-weight:700; margin-bottom:20px;">My Orders</h2>
+
+        <div class="card">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Payment</th>
+                        <th>Date</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>#{{ order.id }}</td>
+                        <td>₦{{ order.total_amount }}</td>
+
+                        <td>
+                            <span class="badge bg-info">
+                                {{ order.order_status|capitalize }}
+                            </span>
+                        </td>
+
+                        <td>
+                            {% if order.payment_status == "paid" %}
+                                <span class="badge bg-success">Paid</span>
+                            {% else %}
+                                <span class="badge bg-danger">Pending</span>
+                            {% endif %}
+                        </td>
+
+                        <td>{{ order.date_created.strftime("%Y-%m-%d") }}</td>
+
+                        <td>
+                            <a href="{{ url_for('show_order', order_id=order.id) }}"
+                               class="btn btn-primary">
+                                View
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+</section>
+
+{% include "footer.html"%}{% endblock %}

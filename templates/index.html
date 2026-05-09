@@ -1,0 +1,129 @@
+{% block content %}
+{% include "header.html" %}
+
+    <section id="hero">
+        <h4>vodi luxury & fashion</h4>
+        <h3>Premium Design with Exclusive Outfit</h3>
+        <h2>Both African Natives  & Cooperate Wears</h2>
+        <h1> Check Our Shops to Order</h1>
+        <p>Premium or Nothing</p>
+        <button>Shop Now</button>
+    </section>
+    
+    <section id="feature" class="section-p1">
+        <div class="fe-box">
+            <img src="static/assets/images/delivery-pack.png">
+            <h6>Free Delivery</h6>
+        </div>
+        <div class="fe-box">
+            <img src="static/assets/images/fashion.png">
+            <h6>Fashion</h6>
+        </div>
+        <div class="fe-box">
+            <img src="static/assets/images/promo1.png">
+            <h6>Promotions</h6>
+        </div>
+        <div class="fe-box">
+            <img src="static/assets/images/happy.png">
+            <h6>Happy Sales</h6>
+        </div>
+        <div class="fe-box">
+            <img src="static/assets/images/online-order.png">
+            <h6>Online Order</h6>
+        </div>
+        <div class="fe-box">
+            <img src="static/assets/images/office.png">
+            <h6>F24/7 Support</h6>
+        </div>
+    </section>
+
+    <section id="product1" class="section-p1">
+        <h2>Feature Product</h2>
+        <p>Vodi Luxury Collection New Modern Design</p>
+            <div class="product-content">
+                {% for i in data: %}
+                <div class="product-box">
+                    <div class="img-box">
+                   <img src="{{ i.product_img }}" alt="">
+                    </div>
+                    <div class="des">
+                        <span>{{ i.company}}</span>
+                       <h2 class="product-title">{{i.product_name}}</h2>
+                    </div>
+                     <div class="price-and-cart">
+                    <span class="price">₦{{ i.product_price}}</span>
+                    <i class="ri-shopping-cart-fill add-cart"></i>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+    </section>
+    <section id="banner" class="section-m1">
+        <h4>Discount Services</h4>
+        <h2>Up to <span>30% Off </span>- All Wears, Shoes, Caps & Accessories</h2>
+        <button class="normal">Explore More</button>
+    </section>
+
+
+     <section id="product1" class="section-p1">
+        <h2>New Arrival</h2>
+        <p>Vodi Luxury Collection New Modern Design</p>
+             <div class="product-content">
+                {% for i in data[:: -1]: %}
+                <div class="product-box">
+                    <div class="img-box">
+                   <img src="{{ i.product_img }}" alt="">
+                    </div>
+                    <div class="des">
+                        <span>{{ i.company}}</span>
+                       <h2 class="product-title">{{i.product_name}}</h2>
+                    </div>
+                     <div class="price-and-cart">
+                    <span class="price">₦{{ i.product_price}}</span>
+                    <i class="ri-shopping-cart-fill add-cart"></i>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+    </section>
+    <section id="sm-banner" class="section-p1">
+        <div class="banner-box">
+            <h4>@Vodi Laundry and Dry cleaning </h4>
+            <h2>We offer premium laundry services </h2>
+            <span>for both female and male clothes, bedsheet, duet and more</span>
+            <button class="white">Learn More</button>
+        </div>
+        <div class="banner-box banner-box2">
+            <h4> Events & Functions </h4>
+            <h2>Asowebi for birthday & weddings</h2>
+            <span>Premium & classic outfit @vodi luxury</span>
+            <button class="white">Collection</button>
+        </div>
+    </section>
+    <section id="banner3">
+         <div class="banner-box">
+            <h2> TECHNOLOGY & AI </h2>
+            <h3>Revolution AI technology for premium services</h3>
+        </div>
+        <div class="banner-box banner-box2">
+            <h2> HEALTHY DIETING </h2>
+            <h3>Maintain good diet for metal and physical health</h3>
+        </div>
+        <div class="banner-box banner-box3">
+            <h2> SPORT ACTIVITIES </h2>
+            <h3>Always engage in sport activities for metal and physical fit</h3>
+        </div>
+    </section>
+
+    <section id="news-letter" class="section-p1 section-m1">
+        <div class="news-text">
+            <h4>Sign Up For Newsletter</h4>
+            <p>Get E-mail update about our latest shop and <span>special offers</span></p>
+        </div>
+        <div class="form">
+            <input type="text" placeholder="your email address">
+            <button class="normal">Sign Up</button>
+        </div>
+    </section>
+
+{% include "footer.html" %} {% endblock %}

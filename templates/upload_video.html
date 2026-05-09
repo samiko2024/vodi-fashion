@@ -1,0 +1,21 @@
+{% block content %}
+{% include "header.html" %}
+
+ <section id="upload-video" class="section-p1">
+
+   <form method="POST" enctype="multipart/form-data">
+    <h2>Upload Video</h2>
+    {{ form.hidden_tag() }}
+    {{ form.title.label }}<br>
+    {{ form.title() }}<br>
+    {{ form.description.label }}<br>
+    {{ form.description(rows=4) }}<br>
+    {{ form.contact_url.label }}<br>
+    {{ form.contact_url() }}<br>
+    {{ form.video.label }}<br>
+    {{ form.video() }}<br>
+    {{ form.submit(class_='btn btn-primary') }}
+  </form>
+
+ </section>
+{% include "footer.html"%}{% endblock %}

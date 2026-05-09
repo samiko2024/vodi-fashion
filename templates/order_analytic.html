@@ -1,0 +1,99 @@
+{% block content %}
+{% include "header.html" %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<section class="analytics-section">
+
+    <h2 class="analytics-title">Admin Analytics</h2>
+
+    <div class="analytics-grid">
+
+        <!-- DAILY -->
+        <div class="analytics-card">
+            <span class="analytics-label">Today</span>
+            <h4>{{ daily_orders }} Orders</h4>
+            <p class="analytics-amount">₦{{ daily_revenue }}</p>
+        </div>
+
+        <!-- WEEKLY -->
+        <div class="analytics-card">
+            <span class="analytics-label">This Week</span>
+            <h4>{{ weekly_orders }} Orders</h4>
+            <p class="analytics-amount">₦{{ weekly_revenue }}</p>
+        </div>
+
+        <!-- MONTHLY -->
+        <div class="analytics-card">
+            <span class="analytics-label">This Month</span>
+            <h4>{{ monthly_orders }} Orders</h4>
+            <p class="analytics-amount">₦{{ monthly_revenue }}</p>
+        </div>
+
+    </div>
+
+    <div class="chart-card">
+        <h5 class="chart-title">Last 7 Days Performance</h5>
+        <canvas id="ordersChart"></canvas>
+    </div>
+
+    <div class="chart-card">
+        <h5 class="chart-title">Monthly Orders & Revenue</h5>
+        <canvas id="monthlyChart"></canvas>
+    </div>
+
+
+    <a href="{{ url_for('export_analytics') }}"
+       class="btn btn-dark mb-3" >
+       ⬇ Download Report
+    </a>
+
+</section>
+
+
+
+
+    <script>
+    const ctx = document.getElementById('ordersChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ dates | default([]) | tojson }},
+            datasets: [
+                {
+                    label: 'Orders',
+                    data: {{ orders | default([]) | tojson }}
+                },
+                {
+                    label: 'Revenue (₦)',
+                    data: {{ revenue | default([]) | tojson }}
+                }
+            ]
+        }
+    });
+
+    new Chart(document.getElementById('monthlyChart'), {
+        type: 'line',
+        data: {
+            labels: {{ months | default([]) | tojson }},
+            datasets: [
+                {
+                    label: 'Orders',
+                    data: {{ orders | default([]) | tojson }},
+                    tension: 0.4
+                },
+                {
+                    label: 'Revenue (₦)',
+                    data: {{ revenue | default([]) | tojson }},
+                    tension: 0.4
+                }
+            ]
+        }
+    });
+    </script>
+
+
+
+{% include "footer.html"%}{% endblock %}

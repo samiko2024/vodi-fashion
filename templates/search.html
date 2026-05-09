@@ -1,0 +1,59 @@
+{% block content %}
+{% include "header.html" %}
+{% if items | length < 1 %}
+    <h3 style="color: white">No Item Match Your Search Query</h3>
+{% else %}
+
+                <div class="product-content">
+                {% for i in data: %}
+                <div class="product-box">
+                    <a href="{{ url_for('single_product', item_id=i.id) }}">
+                        <div class="img-box">
+                            <img src="{{ i.product_img }}" alt="">
+                        </div>
+                    </a>
+                        <div class="des">
+                            <span>{{ i.company}}</span>
+                           <h2 class="product-title">{{i.product_name}}</h2>
+                        </div>
+                         <div class="price-and-cart">
+                        <span class="price">${{ i.product_price}}</span>
+
+                        <i class="ri-shopping-cart-fill add-cart"></i>
+                        </div>
+
+                </div>
+                {% endfor %}
+            </div>
+{% endif %}
+
+    <section id="news-letter" class="section-p1 section-m1">
+        <div class="news-text">
+            <h4>Sign Up For Newsletter</h4>
+            <p>Get E-mail update about our latest shop and <span>special offers</span></p>
+        </div>
+        <div class="form">
+            <input type="text" placeholder="your email address">
+            <button class="normal">Sign Up</button>
+        </div>
+    </section>
+
+     <script>
+            var mainImg = document.getElementById("mainImg")
+            var smallImg = document.getElementsByClassName("small-img")
+
+            smallImg[0].onclick = function(){
+            mainImg.src = smallImg[0].src;
+            }
+            smallImg[1].onclick = function(){
+            mainImg.src = smallImg[1].src;
+            }
+            smallImg[2].onclick = function(){
+            mainImg.src = smallImg[2].src;
+            }
+            smallImg[3].onclick = function(){
+            mainImg.src = smallImg[3].src;
+            }
+        </script>
+
+{% include "footer.html" %} {% endblock %}

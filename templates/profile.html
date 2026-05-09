@@ -1,0 +1,75 @@
+{% block content %}
+{% include "header.html" %}
+
+    <section id="user-banner" class="section-p1">
+
+    <div class="container">
+        <div class="avatar-box">
+            <img src="{{ user.avatar or '/static/img/default-avatar.png' }}" class="avatar-img">
+            <label class="avatar-upload">
+                Change Avatar
+                <input type="file" name="avatar" hidden>
+            </label>
+        </div>
+        <h3 class="user-name">
+            Welcome <span>{{ user.username }}</span>
+        </h3>
+
+        <div class="row profile-wrapper">
+
+            <!-- Sidebar -->
+            <div class="col-sm-3 profile-sidebar">
+                <ul class="profile-menu">
+                    <li>
+                        <a href="#">
+                            <button class="profile-btn active">Profile</button>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/change-password/{{ user.id }}">
+                            <button class="profile-btn">Change Password</button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Content -->
+            <div class="col-sm-6 profile-content">
+                <div class="profile-card">
+                    <h4>Name: {{ user.username }}</h4>
+                    <p>Email: {{ user.email }}</p>
+                    <p>Address: {{ user.address }} {{ user.state }} {{ user.country }}</p>
+                    <p>Tel: {{ user.phone }}</p>
+                </div>
+            </div>
+            <h4 class="section-title">Order History</h4>
+
+            {% if orders %}
+                {% for order in orders %}
+                    <div class="order-card">
+
+                        <div>
+                            <h5>Order #{{ order.id }}</h5>
+                            <span>{{ order.date_created.strftime('%d %b %Y') }}</span>
+                        </div>
+
+                        <div class="order-meta">
+                            <span class="order-total">₦{{ "%.2f"|format(order.total_amount) }}</span>
+
+                            <span class="order-status {{ order.status }}">
+                                {{ order.order_status|capitalize }}
+                            </span>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="empty-state">No orders yet.</p>
+            {% endif %}
+
+        </div>
+    </div>
+</section>
+
+     {% include "footer.html" %} {% endblock %}
+

@@ -1,0 +1,28 @@
+{% block content %}
+{% include "header.html" %}
+ <section id="personal-cart">
+     {% for item in items %}
+     <ul>
+         <li>
+          <img src="{{ item.image }}" width="50">
+          {{ item.title }} — ${{ item.price }} × {{ item.quantity }}
+          <h3>Total: ${{ total }}</h3>
+         </li>
+     </ul>
+    {% endfor %}
+     <button id="clear-cart-btn">Clear Cart</button>
+ </section>
+
+    <script>
+    document.getElementById("clear-cart-btn").onclick = () => {
+        fetch("/cart/clear", { method: "POST" })
+        .then(r => r.json())
+        .then(data => alert(data.message));
+    };
+    </script>
+
+
+
+
+
+{% include "footer.html"%}{% endblock %}
