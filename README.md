@@ -19,3 +19,29 @@ Other Tools: REST APIs, Git, Cloud deployment
 Build a scalable e-commerce solution tailored for fashion businesses
 Provide a smooth and engaging user experience
 Enable easy product and order management for vendors
+
+## 📸 Screenshot
+
+### 🏠 Homepage
+![Homepage](screenshot/home-page.png)
+
+### 📊 Dashboard
+![Dashboard](screenshot/dashboard.png)
+###  About
+![Aboutpage](screenshot/about-page.png)
+###  Cart
+![CartPage](screenshot/cart-page.png)
+### 📊 Admin Analytics
+![AdminAnalytic](screenshot/admin-analytic.png)
+###  Mobile Responsive
+![MobileResponsive](screenshot/mobile-device-video-page.png)
+###  Shop
+![ShopPage](screenshot/shop-page.png)
+###  Account
+![AccountPage](screenshot/personal-account-page.png)
+###  ShopItems
+![ShopItemsPage](screenshot/shpitems-page.png)
+###  Signup
+![SignupPage](screenshot/signup.png)
+###  Order Management
+![OrderManagement](screenshot/order-management.png)
