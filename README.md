@@ -20,28 +20,30 @@ Build a scalable e-commerce solution tailored for fashion businesses
 Provide a smooth and engaging user experience
 Enable easy product and order management for vendors
 
-## 📸 Screenshot
+<<<<<<< HEAD
+## 📸 Screenshots
 
 ### 🏠 Homepage
-![Homepage](screenshot/home-page.png)
+![Homepage](screenshots/home-page.png)
 
 ### 📊 Dashboard
-![Dashboard](screenshot/dashboard.png)
+![Dashboard](screenshots/dashboard.png)
 ###  About
-![Aboutpage](screenshot/about-page.png)
+![Aboutpage](screenshots/about-page.png)
 ###  Cart
-![CartPage](screenshot/cart-page.png)
+![CartPage](screenshots/cart-page.png)
 ### 📊 Admin Analytics
-![AdminAnalytic](screenshot/admin-analytic.png)
+![AdminAnalytic](screenshots/admin-analytic.png)
 ###  Mobile Responsive
-![MobileResponsive](screenshot/mobile-device-video-page.png)
+![MobileResponsive](screenshots/mobile-device-video-page.png)
 ###  Shop
-![ShopPage](screenshot/shop-page.png)
+![ShopPage](screenshots/shop-page.png)
 ###  Account
-![AccountPage](screenshot/personal-account-page.png)
+![AccountPage](screenshots/personal-account-page.png)
 ###  ShopItems
-![ShopItemsPage](screenshot/shpitems-page.png)
+![ShopItemsPage](screenshots/shpitems-page.png)
 ###  Signup
-![SignupPage](screenshot/signup.png)
+![SignupPage](screenshots/signup.png)
 ###  Order Management
-![OrderManagement](screenshot/order-management.png)
+![OrderManagement](screenshots/order-management.png)
+
